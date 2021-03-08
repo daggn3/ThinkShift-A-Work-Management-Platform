@@ -24,7 +24,7 @@ export default function EmployeeForm() {
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
         if ('name' in fieldValues)
-            temp.name = fieldValues.name ? "" : "This field is required."
+            temp.name = /^([A-Z][a-z]+([ ]?[a-z]?['-]?[A-Z][a-z]+)*)$/.test(fieldValues.name) ? "" : "This field is required."
         if ('email' in fieldValues)
             temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Email is not valid."
         if ('password' in fieldValues)
