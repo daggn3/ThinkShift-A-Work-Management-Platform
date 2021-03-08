@@ -200,7 +200,7 @@ class MLogin extends Component {
 
             </Grid>
             <Grid item>
-              <Link href="http://localhost:3000/signup" variant="body2">
+              <Link href="http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:3000/signup" variant="body2">
                 {"Don't have an account? Sign Up!"}
               </Link>
             </Grid>
