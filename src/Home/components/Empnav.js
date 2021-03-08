@@ -8,6 +8,7 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -63,9 +64,11 @@ class Empnav extends Component {
           <Typography variant="h6" className={classes.title}>
             ThinkShift
           </Typography>
+          <Tooltip title="Log Out">
           <IconButton onClick={this.logout} startIcon={<ExitToAppIcon />} edge="start" className={classes.homeButton} color="inherit" aria-label="menu">
             <ExitToAppIcon />
           </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     </div>

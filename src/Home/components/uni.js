@@ -23,6 +23,7 @@ import axios from "axios"
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -138,9 +139,11 @@ export default function Timetable() {
   return (
     <div>
       <div className={classes.root}>
+      <Tooltip title="Inform Employees Via Email"> 
       <Button onClick={publish} variant="contained" color="secondary" >
         Notify Employees
       </Button>
+      </Tooltip>
       <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
