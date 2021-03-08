@@ -73,7 +73,7 @@ export default function EmployeeForm() {
     return (  
 
         <div> 
-            <Typography variant="h2">
+            <Typography variant="h5">
                 Employee Form
             </Typography>
             
