@@ -32,7 +32,7 @@ const styles = theme => ({
 });
 
 
-class MLogin extends Component {
+class ELogin extends Component {
   
   constructor(props) {
     super()
@@ -138,7 +138,7 @@ class MLogin extends Component {
           ThinkShift Employee Sign in
         </Typography>
         <form onSubmit={this.onSubmit} className={classes.form}>
-          <TextField data-testid ="email"
+          <TextField
             onChange={this.changeEmail}
             value={this.state.email}
             variant="outlined"
@@ -151,7 +151,7 @@ class MLogin extends Component {
             autoComplete="email"
             autoFocus
           />
-          <TextField data-testid ="password"
+          <TextField
             onChange = {this.changePassword}
             value={this.state.password}
             variant="outlined"
@@ -227,4 +227,4 @@ class MLogin extends Component {
   );
 }}
 
-export default withStyles(styles, { withTheme: true })(MLogin);
+export default withStyles(styles, { withTheme: true })(ELogin);
