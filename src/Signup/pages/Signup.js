@@ -210,7 +210,7 @@ class SignUp extends Component {
           <Grid container justify="flex-end">
             <Grid item>
 
-              <Link className={classes.link} href="http://localhost:3000" variant="body2">
+              <Link className={classes.link} href="http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:3000" variant="body2">
                 Already have an account? Sign in!
               </Link>
 
