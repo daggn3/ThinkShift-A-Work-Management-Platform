@@ -21,8 +21,6 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import axios from "axios"
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,14 +47,13 @@ export default function Timetable() {
   const classes = useStyles();
 
   //Our route to get a specific employee timetable
-  const emp = 'http://localhost:5000/manager/employees'
-  const time = "http://localhost:5000/manager/timetable"
-  const posty = "http://localhost:5000/manager/timetable"
-  const notify = "http://localhost:5000/manager/timetable/send"
+  const emp = 'http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/employees'
+  const time = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/timetable"
+  const posty = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/timetable"
+  const notify = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/timetable/send"
 
   //Creating state const
   const [data, setData] = React.useState([]);
-  const [open, setOpen] = React.useState(false);
 
   //Create our staff state to a specific frame
   const [staff, setStaff] = React.useState([
@@ -126,34 +123,14 @@ export default function Timetable() {
 
   const publish = () => {
     axios.get(notify, {withCredentials:true}).then(res => console.log(res))
-    setOpen(true)
   }
 
-  const handleClose = (reason) => {
-    if(reason ==="clickaway") {
-      return
-    }
-    setOpen(false)
-  }
   return (
     <div>
       <div className={classes.root}>
       <Button onClick={publish} variant="contained" color="secondary" >
         Notify Employees
       </Button>
-      <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-
-           open={open} autoHideDuration={2000} onClose={handleClose}>
-
-          <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
-            Employees Have been notified!
-          </MuiAlert>
-
-      </Snackbar>
       </div>
     <Paper>
       
