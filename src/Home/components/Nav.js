@@ -58,7 +58,7 @@ class ButtonAppBar extends Component {
           <Typography variant="h6" className={classes.title}>
             ThinkShift
           </Typography>
-          <Tooltip title="TimeTable">
+          <Tooltip title="Timetable">
           <IconButton variant="link" edge="start" className={classes.homeButton} color="inherit" href="/time" aria-label="menu">
             <EventIcon />
           </IconButton>
