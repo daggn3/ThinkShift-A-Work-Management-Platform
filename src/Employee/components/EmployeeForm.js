@@ -23,14 +23,14 @@ export default function EmployeeForm() {
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
-        if ('fullName' in fieldValues)
+        if ('name' in fieldValues)
             temp.name = fieldValues.name ? "" : "This field is required."
         if ('email' in fieldValues)
             temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Email is not valid."
         if ('password' in fieldValues)
             temp.password = /\b(\d){4}\b/.test(fieldValues.password) ? "" : "4 number PIN required."
         if ('mobile' in fieldValues)
-            temp.mobile =  /([+(\d]{1})(([\d+() -.]){5,16})([+(\d]{1})/.test(fieldValues.mobile) ? "" : "Minimum 10 numbers required."
+            temp.mobile =  /(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})/.test(fieldValues.mobile) ? "" : "Minimum 10 numbers required."
         if ('department' in fieldValues)
         temp.department = fieldValues.department ? "" : "This field is required."
         setErrors({
