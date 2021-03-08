@@ -28,9 +28,9 @@ export default function EmployeeForm() {
         if ('email' in fieldValues)
             temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Email is not valid."
         if ('password' in fieldValues)
-            temp.password = fieldValues.password.length > 3 ? "" : "4 number PIN required."
+            temp.password = /\b(\d){4}\b/.test(fieldValues.password) ? "" : "4 number PIN required."
         if ('mobile' in fieldValues)
-            temp.mobile = fieldValues.mobile.length > 9 ? "" : "Minimum 10 numbers required."
+            temp.mobile =  /([+(\d]{1})(([\d+() -.]){5,16})([+(\d]{1})/.test(fieldValues.mobile) ? "" : "Minimum 10 numbers required."
         if ('department' in fieldValues)
         temp.department = fieldValues.department ? "" : "This field is required."
         setErrors({
