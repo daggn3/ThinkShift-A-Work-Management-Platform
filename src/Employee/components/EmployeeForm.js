@@ -1,9 +1,10 @@
 import React from 'react'
-import { Grid, } from '@material-ui/core';
+import { Grid, Typography, } from '@material-ui/core';
 import Controls from "../pages/controls/Controls";
 import { useForm, Form } from '../components/useForm';
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+
 
 import axios from "axios"
 
@@ -68,7 +69,14 @@ export default function EmployeeForm() {
         }
         setOpen(false);
       };
-    return (
+      
+    return (  
+
+        <div> 
+            <Typography variant="h2">
+                Employee Form
+            </Typography>
+            
         
         <Form onSubmit={handleSubmit}>
             <Grid container>
@@ -145,5 +153,6 @@ export default function EmployeeForm() {
                 </Grid>
             </Grid>
         </Form>
+        </div> 
     )
 }
