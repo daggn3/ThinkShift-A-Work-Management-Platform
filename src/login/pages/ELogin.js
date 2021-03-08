@@ -91,7 +91,7 @@ class MLogin extends Component {
     }
     
     //Posts info to database, if 200 response, redirects to home
-    axios.post("http://localhost:5000/login/employee", signin, {withCredentials:true})
+    axios.post("http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/login/employee", signin, {withCredentials:true})
     .then(response => { 
       this.setState({
       email:"",

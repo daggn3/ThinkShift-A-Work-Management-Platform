@@ -33,7 +33,7 @@ export default function Emptimetable() {
 
 
     //Our route to get a specific employee timetable
-  const specemp = "http://localhost:5000/employee/schedule"
+  const specemp = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/employee/schedule"
 
 
   //Creating state const

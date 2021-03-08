@@ -37,7 +37,7 @@ export default function Employees() {
 
     const classes = useStyles();
 
-    const url = 'http://localhost:5000/manager/employees'
+    const url = 'http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/employees'
 
     const [records, setRecords] = useState([])
     const [open, setOpen] = useState(false)

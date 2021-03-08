@@ -13,23 +13,23 @@ const app = express();
 
 // allowing requests through
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:3000",
   credentials: true
 }));
 
 // parsing incoming json data
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+//   );
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
 
-  next();
-});
+//   next();
+// });
 
 // parsing cookies on browser
 app.use(cookieParser());

@@ -47,10 +47,10 @@ export default function Timetable() {
   const classes = useStyles();
 
   //Our route to get a specific employee timetable
-  const emp = 'http://localhost:5000/manager/employees'
-  const time = "http://localhost:5000/manager/timetable"
-  const posty = "http://localhost:5000/manager/timetable"
-  const notify = "http://localhost:5000/manager/timetable/send"
+  const emp = 'http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/employees'
+  const time = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/timetable"
+  const posty = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/timetable"
+  const notify = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/timetable/send"
 
   //Creating state const
   const [data, setData] = React.useState([]);

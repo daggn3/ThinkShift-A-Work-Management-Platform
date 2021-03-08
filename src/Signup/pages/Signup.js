@@ -103,7 +103,7 @@ class SignUp extends Component {
     }
     
     //posts info to database, if response 200, redirect to login page
-    axios.post("http://localhost:5000/login/create", registered)
+    axios.post("http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/login/create", registered)
     .then(response => {
       this.setState({
         fireRedirect: true,
