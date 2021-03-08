@@ -125,6 +125,7 @@ export default function Timetable() {
 
   const publish = () => {
     axios.get(notify, {withCredentials:true}).then(res => console.log(res))
+    setOpen(true)
   }
 
   const handleClose = (reason) => {
