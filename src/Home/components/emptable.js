@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
-  ViewState, GroupingState, IntegratedGrouping
+  ViewState, EditingState, GroupingState, IntegratedGrouping, IntegratedEditing,
 } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
@@ -33,7 +33,7 @@ export default function Emptimetable() {
 
 
     //Our route to get a specific employee timetable
-  const specemp = "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/employee/schedule"
+  const specemp = "http://localhost:5000/employee/schedule"
 
 
   //Creating state const
@@ -84,7 +84,7 @@ export default function Emptimetable() {
         height={900}
       >
         <ViewState
-          defaultCurrentDate="2021-03-01"
+          defaultCurrentDate= {Date.parse(new Date())}
         />
         <GroupingState
           grouping={grouping}
