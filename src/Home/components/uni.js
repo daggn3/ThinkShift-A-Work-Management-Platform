@@ -21,7 +21,8 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import axios from "axios"
 import Button from '@material-ui/core/Button';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,6 +132,21 @@ export default function Timetable() {
       <Button onClick={publish} variant="contained" color="secondary" >
         Notify Employees
       </Button>
+      <div>
+      <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+
+           open={open} autoHideDuration={2000} onClose={handleClose}>
+
+          <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
+            Employees Have been notified!
+          </MuiAlert>
+
+      </Snackbar>
+      </div>
       </div>
     <Paper>
       
