@@ -10,7 +10,7 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
 
@@ -58,15 +58,21 @@ class ButtonAppBar extends Component {
           <Typography variant="h6" className={classes.title}>
             ThinkShift
           </Typography>
+          <Tooltip title="TimeTable">
           <IconButton variant="link" edge="start" className={classes.homeButton} color="inherit" href="/time" aria-label="menu">
             <EventIcon />
           </IconButton>
+          </Tooltip>
+          <Tooltip title="Employees">
           <IconButton variant="link" edge="start" className={classes.homeButton} color="inherit" href="/emp" aria-label="menu">
             <EmojiPeopleIcon />
           </IconButton>
+          </Tooltip>
+          <Tooltip title="Log Out">
           <IconButton onClick={this.logout}  edge="start" className={classes.homeButton} color="inherit" aria-label="menu">
             <ExitToAppIcon />
           </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     </div>
