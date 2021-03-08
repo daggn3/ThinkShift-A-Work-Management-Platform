@@ -75,7 +75,7 @@ export default function EmployeeForm() {
 
         <div> 
             <Typography variant="h6" color = "secondary">
-                Employee Form
+                Employee Creation Form
             </Typography>
             
         
