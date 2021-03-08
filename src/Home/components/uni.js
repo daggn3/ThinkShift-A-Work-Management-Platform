@@ -55,6 +55,7 @@ export default function Timetable() {
 
   //Creating state const
   const [data, setData] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
 
   //Create our staff state to a specific frame
   const [staff, setStaff] = React.useState([
@@ -124,6 +125,13 @@ export default function Timetable() {
 
   const publish = () => {
     axios.get(notify, {withCredentials:true}).then(res => console.log(res))
+  }
+
+  const handleClose = (reason) => {
+    if(reason ==="clickaway") {
+      return
+    }
+    setOpen(false)
   }
 
   return (
