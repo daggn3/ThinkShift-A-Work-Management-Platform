@@ -140,7 +140,6 @@ export default function Timetable() {
       <Button onClick={publish} variant="contained" color="secondary" >
         Notify Employees
       </Button>
-      <div>
       <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -154,7 +153,6 @@ export default function Timetable() {
           </MuiAlert>
 
       </Snackbar>
-      </div>
       </div>
     <Paper>
       
