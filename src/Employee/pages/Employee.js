@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
@@ -126,9 +127,11 @@ export default function Employees() {
                                 <TableCell>{item.mobile}</TableCell>
                                 <TableCell>{item.department}</TableCell>
                                 <TableCell>
+                                <Tooltip title="Timetable">
                                 <IconButton onClick={(e) => handleDelete(item._id, e)}>
                                     <DeleteIcon/>
                                 </IconButton>
+                                </Tooltip>
 
                                     
                                 </TableCell>
