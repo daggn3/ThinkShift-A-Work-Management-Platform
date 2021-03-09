@@ -73,6 +73,37 @@ const createEmployee = async (req, res, next) => {
         return next(error);
     }
 
+    // Send email to new employee with their login details
+    // Set up email authentication
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "thinkshiftproject@gmail.com",
+            pass: "CA326Project"
+        }
+    });
+
+    let message = 
+    "Hi " + createdEmployee.name + ",\n\nYour new employee account has been made, here are your details:\n\n" + 
+    "Name: " + createdEmployee.name + "\nPIN: " + req.body.password + "\nMobile No: " + createdEmployee.mobile +
+    "\nManager: " + req.userData.name + "\n\nIf there is anything incorrect, please contact your manager."
+
+    const mailOptions = {
+        from: 'thinkshiftproject@gmail.com',
+        to: createdEmployee.email,
+        subject: 'ThinkShift: Your new employee account has been created!',
+        text: message
+    };
+
+    // Send email, or log eror
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+        console.log(error);
+        } else {
+        console.log('Email sent: ' + info.response);
+        }
+    });
+
     res.status(201).send({_id: createdEmployee.id, name: createdEmployee.name})
 };
 
