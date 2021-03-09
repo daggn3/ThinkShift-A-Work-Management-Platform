@@ -104,7 +104,7 @@ const createEmployee = async (req, res, next) => {
         }
     });
 
-    res.status(201).send({_id: createdEmployee.id, name: createdEmployee.name})
+    return res.status(201).send({_id: createdEmployee.id, name: createdEmployee.name})
 };
 
 
@@ -197,7 +197,7 @@ const getTimetables = async (req, res, next) => {
                 timetables.push(shift)                
             }
         }
-        res.status(200).send(timetables)
+        return res.status(200).send(timetables)
     } catch (err) {
         const error = new HttpError("Timetables could not be retrieved", 500)
         return next(error)
@@ -223,6 +223,10 @@ const sendTimetables = async (req, res, next) => {
 
 
     try {
+        manager = await Manager.findById( {_id: req.userData.id} )
+        if (manager.emailSent >= (Date.now()-1000*600)) {
+            return res.status(404).send("It has been less than 10 minutes since you last sent an email, please wait")
+        }
         // Find all employees attached to the manager logged in
         employees = await Employee.find( {manager: req.userData.id} )
         for (const employee of employees) {
@@ -252,7 +256,9 @@ const sendTimetables = async (req, res, next) => {
                 }
             });
             message = ""
+
         }
+        await manager.updateOne( {emailSent: Date.now()} )
     } catch (err) {
         const error = new HttpError("Emailing shifts failed", 500)
         return next(error)

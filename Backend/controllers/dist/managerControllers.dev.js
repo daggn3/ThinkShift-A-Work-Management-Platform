@@ -153,10 +153,10 @@ var createEmployee = function createEmployee(req, res, next) {
               console.log('Email sent: ' + info.response);
             }
           });
-          res.status(201).send({
+          return _context.abrupt("return", res.status(201).send({
             _id: createdEmployee.id,
             name: createdEmployee.name
-          });
+          }));
 
         case 56:
         case "end":
@@ -555,9 +555,7 @@ var getTimetables = function getTimetables(req, res, next) {
           return _context5.finish(40);
 
         case 48:
-          res.status(200).send(timetables);
-          _context5.next = 55;
-          break;
+          return _context5.abrupt("return", res.status(200).send(timetables));
 
         case 51:
           _context5.prev = 51;
@@ -592,21 +590,37 @@ var sendTimetables = function sendTimetables(req, res, next) {
           });
           _context6.prev = 2;
           _context6.next = 5;
+          return regeneratorRuntime.awrap(Manager.findById({
+            _id: req.userData.id
+          }));
+
+        case 5:
+          manager = _context6.sent;
+
+          if (!(manager.emailSent >= Date.now() - 1000 * 600)) {
+            _context6.next = 8;
+            break;
+          }
+
+          return _context6.abrupt("return", res.status(404).send("It has been less than 10 minutes since you last sent an email, please wait"));
+
+        case 8:
+          _context6.next = 10;
           return regeneratorRuntime.awrap(Employee.find({
             manager: req.userData.id
           }));
 
-        case 5:
+        case 10:
           employees = _context6.sent;
           _iteratorNormalCompletion6 = true;
           _didIteratorError6 = false;
           _iteratorError6 = undefined;
-          _context6.prev = 9;
+          _context6.prev = 14;
           _iterator6 = employees[Symbol.iterator]();
 
-        case 11:
+        case 16:
           if (_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done) {
-            _context6.next = 39;
+            _context6.next = 44;
             break;
           }
 
@@ -616,7 +630,7 @@ var sendTimetables = function sendTimetables(req, res, next) {
           _iteratorNormalCompletion7 = true;
           _didIteratorError7 = false;
           _iteratorError7 = undefined;
-          _context6.prev = 17;
+          _context6.prev = 22;
 
           for (_iterator7 = employee.timetable[Symbol.iterator](); !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
             _shift = _step7.value;
@@ -628,40 +642,40 @@ var sendTimetables = function sendTimetables(req, res, next) {
           } // Set up email to be sent
 
 
-          _context6.next = 25;
+          _context6.next = 30;
           break;
 
-        case 21:
-          _context6.prev = 21;
-          _context6.t0 = _context6["catch"](17);
+        case 26:
+          _context6.prev = 26;
+          _context6.t0 = _context6["catch"](22);
           _didIteratorError7 = true;
           _iteratorError7 = _context6.t0;
 
-        case 25:
-          _context6.prev = 25;
-          _context6.prev = 26;
+        case 30:
+          _context6.prev = 30;
+          _context6.prev = 31;
 
           if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
             _iterator7["return"]();
           }
 
-        case 28:
-          _context6.prev = 28;
+        case 33:
+          _context6.prev = 33;
 
           if (!_didIteratorError7) {
-            _context6.next = 31;
+            _context6.next = 36;
             break;
           }
 
           throw _iteratorError7;
 
-        case 31:
-          return _context6.finish(28);
+        case 36:
+          return _context6.finish(33);
 
-        case 32:
-          return _context6.finish(25);
+        case 37:
+          return _context6.finish(30);
 
-        case 33:
+        case 38:
           mailOptions = {
             from: 'thinkshiftproject@gmail.com',
             to: employee.email,
@@ -678,64 +692,70 @@ var sendTimetables = function sendTimetables(req, res, next) {
           });
           message = "";
 
-        case 36:
-          _iteratorNormalCompletion6 = true;
-          _context6.next = 11;
-          break;
-
-        case 39:
-          _context6.next = 45;
-          break;
-
         case 41:
-          _context6.prev = 41;
-          _context6.t1 = _context6["catch"](9);
+          _iteratorNormalCompletion6 = true;
+          _context6.next = 16;
+          break;
+
+        case 44:
+          _context6.next = 50;
+          break;
+
+        case 46:
+          _context6.prev = 46;
+          _context6.t1 = _context6["catch"](14);
           _didIteratorError6 = true;
           _iteratorError6 = _context6.t1;
 
-        case 45:
-          _context6.prev = 45;
-          _context6.prev = 46;
+        case 50:
+          _context6.prev = 50;
+          _context6.prev = 51;
 
           if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
             _iterator6["return"]();
           }
 
-        case 48:
-          _context6.prev = 48;
+        case 53:
+          _context6.prev = 53;
 
           if (!_didIteratorError6) {
-            _context6.next = 51;
+            _context6.next = 56;
             break;
           }
 
           throw _iteratorError6;
 
-        case 51:
-          return _context6.finish(48);
+        case 56:
+          return _context6.finish(53);
 
-        case 52:
-          return _context6.finish(45);
+        case 57:
+          return _context6.finish(50);
 
-        case 53:
-          _context6.next = 59;
+        case 58:
+          _context6.next = 60;
+          return regeneratorRuntime.awrap(manager.updateOne({
+            emailSent: Date.now()
+          }));
+
+        case 60:
+          _context6.next = 66;
           break;
 
-        case 55:
-          _context6.prev = 55;
+        case 62:
+          _context6.prev = 62;
           _context6.t2 = _context6["catch"](2);
           error = new HttpError("Emailing shifts failed", 500);
           return _context6.abrupt("return", next(error));
 
-        case 59:
+        case 66:
           return _context6.abrupt("return", res.status(200).send("Emails sent"));
 
-        case 60:
+        case 67:
         case "end":
           return _context6.stop();
       }
     }
-  }, null, null, [[2, 55], [9, 41, 45, 53], [17, 21, 25, 33], [26,, 28, 32], [46,, 48, 52]]);
+  }, null, null, [[2, 62], [14, 46, 50, 58], [22, 26, 30, 38], [31,, 33, 37], [51,, 53, 57]]);
 };
 
 exports.createEmployee = createEmployee;

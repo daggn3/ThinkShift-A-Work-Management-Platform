@@ -9,13 +9,16 @@ const createManager = async (req, res, next) => {
 
 // Function to create a manager account
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors)
-        throw new HttpeError("Invalid input, please check your entry", 422)
-    };
-
     const {name, email, password} = req.body;
+
+    // Check if manager already exists
+    let check = await Manager.find({email: email})
+
+    // If manager already exists, return error
+    if (check.length >= 1) {
+        const error = new HttpError("Manager with this email already exists", 422)
+        return next(error)
+    }
 
     let hashedPassword;
 
@@ -30,6 +33,7 @@ const createManager = async (req, res, next) => {
     // Set department and staff manually
     let department = "Manager";
     let staff = [];
+    let emailSent = Date.now() - 1000*600
     // Create manager
     const createdManager = new Manager ({
         name,
@@ -37,6 +41,7 @@ const createManager = async (req, res, next) => {
         password: hashedPassword,
         department,
         staff,
+        emailSent
     });    
 
     try {
@@ -51,15 +56,15 @@ const createManager = async (req, res, next) => {
 
     try {
         // Create token for manager to log in
-        token = jwt.sign({name: createdManager.name, email: createdManager.email, id: createdManager.id}, "secret_manager", {expiresIn: "3h"});        
+        token = jwt.sign({name: createdManager.name, id: createdManager.id}, "secret_manager", {expiresIn: "3h"});        
     } catch (err) {
         const error = new HttpError("Creating manager failed", 500)
         return next(error)
     }
 
     // Send token as cookie, expirers in 3 hours
-    res.status(201).cookie('thinkToken', token, { expires: new Date(Date.now() + 3 * 3600000) })
-    .send(createdManager)
+    return res.status(201).cookie('thinkToken', token, { expires: new Date(Date.now() + 3 * 3600000) })
+    .send({name: createdManager.name, _id: createdManager.id})
 
 };
 
@@ -103,15 +108,15 @@ const signInManager = async (req, res, next) => {
 
     try {
         // Create token for manager on log in
-        token = jwt.sign({name: manager[0].name, email: manager[0].email, id: manager[0].id}, "secret_manager", {expiresIn: "3h"});        
+        token = jwt.sign({name: manager[0].name, id: manager[0].id}, "secret_manager", {expiresIn: "3h"});        
     } catch (err) {
         const error = new HttpError("Signing in manager failed", 500)
         return next(error)
     }
 
     // Send token as cookie, expires in 3 hours
-    res.status(201).cookie('thinkToken', token, {expires: new Date(Date.now() + 3 * 3600000)})
-    .send(manager[0])
+    return res.status(201).cookie('thinkToken', token, {expires: new Date(Date.now() + 3 * 3600000)})
+    .send({name: manager[0].name, _id: manager[0].id})
 
 };
 
@@ -154,15 +159,15 @@ const signInEmployee = async (req, res, next) => {
 
     try {
         // Create token for employee on log in
-        token = jwt.sign({name: employee[0].name, email: employee[0].email, id: employee[0].id}, "secret_manager", {expiresIn: "3h"});        
+        token = jwt.sign({name: employee[0].name, id: employee[0].id}, "secret_manager", {expiresIn: "3h"});        
     } catch (err) {
         const error = new HttpError("Signing in employee failed", 500)
         return next(error)
     }
 
     // Send token as cookie, expires in 3 hours
-    res.status(201).cookie('thinkToken', token, {expires: new Date(Date.now() + 3 * 3600000)})
-    .send(employee[0])
+    return res.status(201).cookie('thinkToken', token, {expires: new Date(Date.now() + 3 * 3600000)})
+    .send({name: employee[0].name, _id: employee[0].id})
 };
 
 
