@@ -127,7 +127,7 @@ export default function Employees() {
                                 <TableCell>{item.mobile}</TableCell>
                                 <TableCell>{item.department}</TableCell>
                                 <TableCell>
-                                <Tooltip title="Timetable">
+                                <Tooltip title="Delete Employee">
                                 <IconButton onClick={(e) => handleDelete(item._id, e)}>
                                     <DeleteIcon/>
                                 </IconButton>
