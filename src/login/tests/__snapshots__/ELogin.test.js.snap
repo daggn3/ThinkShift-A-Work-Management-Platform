@@ -5,10 +5,10 @@ exports[`matches snapshot 1`] = `
   className="MuiContainer-root MuiContainer-maxWidthXs"
 >
   <div
-    className="MLogin-paper-1"
+    className="ELogin-paper-1"
   >
     <div
-      className="MuiAvatar-root MuiAvatar-circle MLogin-avatar-2 MuiAvatar-colorDefault"
+      className="MuiAvatar-root MuiAvatar-circle ELogin-avatar-2 MuiAvatar-colorDefault"
     >
       <svg
         aria-hidden={true}
@@ -27,12 +27,11 @@ exports[`matches snapshot 1`] = `
       ThinkShift Employee Sign in
     </h1>
     <form
-      className="MLogin-form-3"
+      className="ELogin-form-3"
       onSubmit={[Function]}
     >
       <div
         className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
-        data-testid="email"
       >
         <label
           className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
@@ -86,7 +85,6 @@ exports[`matches snapshot 1`] = `
       </div>
       <div
         className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal MuiFormControl-fullWidth"
-        data-testid="password"
       >
         <label
           className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
@@ -139,7 +137,8 @@ exports[`matches snapshot 1`] = `
         </div>
       </div>
       <button
-        className="MuiButtonBase-root MuiButton-root MuiButton-contained MLogin-submit-4 MuiButton-containedPrimary MuiButton-fullWidth"
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained ELogin-submit-4 MuiButton-containedPrimary MuiButton-fullWidth"
+        data-testid="button"
         disabled={false}
         onBlur={[Function]}
         onDragLeave={[Function]}
@@ -163,7 +162,7 @@ exports[`matches snapshot 1`] = `
       </button>
       <a
         aria-disabled={false}
-        className="MuiButtonBase-root MuiButton-root MuiButton-contained MLogin-submit-4 MuiButton-containedSecondary MuiButton-fullWidth"
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained ELogin-submit-4 MuiButton-containedSecondary MuiButton-fullWidth"
         href="/"
         onBlur={[Function]}
         onDragLeave={[Function]}
@@ -200,7 +199,7 @@ exports[`matches snapshot 1`] = `
     </form>
   </div>
   <div
-    className="MuiBox-root MuiBox-root-11"
+    className="MuiBox-root MuiBox-root-12"
   >
     <p
       className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
@@ -208,7 +207,7 @@ exports[`matches snapshot 1`] = `
       Copyright © 
       <a
         className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorInherit"
-        href="https://material-ui.com/"
+        href="http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:3000"
         onBlur={[Function]}
         onFocus={[Function]}
       >

@@ -170,6 +170,7 @@ class ELogin extends Component {
             variant="contained"
             color="primary"
             className={classes.submit}
+            data-testid="button"
           >
             Sign In
           </Button>

@@ -57,6 +57,8 @@ export default function Timetable() {
   //Creating state const
   const [data, setData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [msg, setMsg] = React.useState("Employees Have Been Notified!")
+  const[snack, setSnack] = React.useState("success")
 
   //Create our staff state to a specific frame
   const [staff, setStaff] = React.useState([
@@ -125,7 +127,12 @@ export default function Timetable() {
 
 
   const publish = () => {
-    axios.get(notify, {withCredentials:true}).then(res => console.log(res))
+    axios.get(notify, {withCredentials:true}).then(res => console.log(res.status)).catch(e => {
+      if (e.response.status !== 200) {
+        setMsg("Sorry, It's Been Too Soon Since Your Last Email!")
+        setSnack("error")
+      }
+    })
     setOpen(true)
   }
 
@@ -152,8 +159,8 @@ export default function Timetable() {
 
            open={open} autoHideDuration={2000} onClose={handleClose}>
 
-          <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
-            Employees Have been notified!
+          <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity={snack}>
+          {msg}
           </MuiAlert>
 
       </Snackbar>
