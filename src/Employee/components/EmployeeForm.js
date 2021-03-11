@@ -56,17 +56,17 @@ export default function EmployeeForm() {
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()){
-            axios.post("http://localhost:5000/manager/employees", values, {withCredentials:true})
+            axios.post("http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/employees", values, {withCredentials:true})
             .then(response => {resetForm()
                 window.location.reload(true)}).catch(e => {
-                    if (e.response.status != 200) {
-                        setMsg("Sorry, Employee Email Already in Use!")
+                   if (e.response.status == 422) {
+                        setMsg("Employee Creation Failed: Email Already in Use!")
                         setSnack("error")
                     }
                 })
                 setMsg("Creating Employee...")
                 setSnack("info")
-        }
+        }       
     }
 
     const handleClick = () => {
@@ -80,6 +80,7 @@ export default function EmployeeForm() {
         setOpen(false);
       };
       
+    //   "http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/employees"
     return (  
 
         <div> 
