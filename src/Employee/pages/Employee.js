@@ -88,7 +88,7 @@ export default function Employees() {
                 if (target.value === "")
                     return items;
                 else
-                    return items.filter(x => x.name.toLowerCase().includes(target.value))
+                    return items.filter(x => x.name.includes(target.value))
             }
         })
     }
