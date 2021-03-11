@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Typography, } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import Controls from "../pages/controls/Controls";
 import { useForm, Form } from '../components/useForm';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -20,6 +20,8 @@ const initialFValues = {
 export default function EmployeeForm() {
     
     const [open, setOpen] = React.useState(false); 
+    const [msg, setMsg] = React.useState("Creating Employee...")
+    const [snack, setSnack] = React.useState("info")
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -54,9 +56,14 @@ export default function EmployeeForm() {
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()){
-            axios.post("http://ec2-34-245-24-4.eu-west-1.compute.amazonaws.com:5000/manager/employees", values, {withCredentials:true})
+            axios.post("http://localhost:5000/manager/employees", values, {withCredentials:true})
             .then(response => {resetForm()
-                window.location.reload(true)})
+                window.location.reload(true)}).catch(e => {
+                    if (e.response.status != 200) {
+                        setMsg("Sorry, Employee Email Already in Use!")
+                        setSnack("error")
+                    }
+                })
         }
     }
 
@@ -133,6 +140,7 @@ export default function EmployeeForm() {
                     </div>
                     <div>
                         <Controls.Button
+                            data-testid="button"
                             onClick={handleClick}
                             type="submit"
                             text="Submit" />
@@ -146,7 +154,7 @@ export default function EmployeeForm() {
                                 }}
                                 open={open} autoHideDuration={6000} onClose={handleClose}>
                                 <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
-                                Employee Created
+                                    Employee Created
                                 </MuiAlert>
                             </Snackbar>
                     </div>
