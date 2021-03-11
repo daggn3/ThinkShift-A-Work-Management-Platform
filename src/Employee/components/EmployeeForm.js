@@ -64,6 +64,8 @@ export default function EmployeeForm() {
                         setSnack("error")
                     }
                 })
+                setMsg("Creating Employee...")
+                setSnack("info")
         }
     }
 
