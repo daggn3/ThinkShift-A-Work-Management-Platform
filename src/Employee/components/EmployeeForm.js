@@ -156,8 +156,8 @@ export default function EmployeeForm() {
                                     vertical: 'bottom', horizontal: 'center'
                                 }}
                                 open={open} autoHideDuration={6000} onClose={handleClose}>
-                                <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
-                                    Employee Created
+                                <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity={snack}>
+                                    {msg}
                                 </MuiAlert>
                             </Snackbar>
                     </div>
